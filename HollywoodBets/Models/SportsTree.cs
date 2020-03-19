@@ -7,8 +7,15 @@ namespace HollywoodBets.Models
 {
     public class SportsTree
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
-        public bool IsComplete { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string image { get; set; }
+
+        public SportsTree(int sportsId, string sportsName, string logo)
+        {
+            id = sportsId;
+            name = sportsName;
+            image = logo;
+        }
     }
 }
