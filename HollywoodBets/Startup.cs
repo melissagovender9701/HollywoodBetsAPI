@@ -42,6 +42,12 @@ namespace HollywoodBets
 
             app.UseAuthorization();
 
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("https://localhost:44375",
+                                    "http://localhost:4200");
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
