@@ -14,7 +14,7 @@ namespace HollywoodBets.Controllers
         [HttpGet]
         public IEnumerable<SportsTree> Get()
         {
-            var sports = new CountrySportsLogic();
+            var sports = new DataLogic();
             return sports.Sports().ToArray();
         }
     }

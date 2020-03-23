@@ -22,11 +22,11 @@ namespace HollywoodBets.Controllers
         {
             List<CountryTree> countries = new List<CountryTree>();
 
-            foreach(var list in CountrySportsLogic.CountrySportsList)
+            foreach(var list in DataLogic.CountrySportsList)
             {
                 if(list.sportsId == sportId)
                 {
-                    countries.Add(CountrySportsLogic.GetCountryByID(list.countryId));
+                    countries.Add(DataLogic.GetCountryByID(list.countryId));
                 }
             }
 

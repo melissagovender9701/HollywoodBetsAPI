@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace HollywoodBets.Business_Logic_Layer
 {
-    public class CountrySportsLogic
+    public class DataLogic
     {
         public static List<SportsTree> SportsList { get; set; }
         public static List<CountryTree> CounrtyList { get; set; }
         public static List<CountrySportsTree> CountrySportsList { get; set; }
 
-        public CountrySportsLogic()
+        public DataLogic()
         {
             this.Sports();
             this.Countries();
@@ -91,7 +91,7 @@ namespace HollywoodBets.Business_Logic_Layer
 
         public static CountryTree GetCountryByID(long id)
         {
-            for(int i =0; i < CountrySportsLogic.CounrtyList.Count; i++)
+            for(int i =0; i < DataLogic.CounrtyList.Count; i++)
             {
                 if(CounrtyList[i].id == id)
                 {
@@ -100,5 +100,31 @@ namespace HollywoodBets.Business_Logic_Layer
             }
             return new CountryTree();
         }
+
+        public static List<Tournament> GetAllTournament()
+        {
+            return new List<Tournament>
+            {
+                new Tournament(1," Copa del Rey"),
+                new Tournament(2,"DFB Pokal"),
+                new Tournament(3,"A-League"),
+                new Tournament(4,"Campeonato Potiguar"),
+                new Tournament(5," Veikkausliiga"),
+                new Tournament(6,"Allsvenskan")
+            };
+        }
+
+        public static List<SportTournament> GetSportTournaments()
+        {
+            return new List<SportTournament>
+            {
+                new SportTournament(5,1,1),
+                new SportTournament(5,2,2),
+                new SportTournament(5,4,4),
+                new SportTournament(5,6,1)
+            };
+        }
+
+        
     }
 }
