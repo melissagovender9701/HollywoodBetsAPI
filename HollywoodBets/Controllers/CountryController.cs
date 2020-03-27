@@ -13,6 +13,7 @@ namespace HollywoodBets.Controllers
     [ApiController]
     public class CountryController : Controller
     {
+        //https://localhost:44394/api/country?id=5
         [HttpGet]
         public IEnumerable<CountryTree> Get(int? id)
         {
