@@ -12,7 +12,9 @@ namespace HollywoodBets.Business_Logic_Layer
         public static List<SportsTree> SportsList { get; set; }
         public static List<CountryTree> CounrtyList { get; set; }
         public static List<CountrySportsTree> CountrySportsList { get; set; }
-
+        public static List<EventTree> EventList { get; set; }
+        public static List<BetTree> BetList { get; set; }
+        public static List<BetTournament> BetTournamentList { get; set; }
         public DataLogic()
         {
             this.Sports();
@@ -91,9 +93,9 @@ namespace HollywoodBets.Business_Logic_Layer
 
         public static CountryTree GetCountryByID(long id)
         {
-            for(int i =0; i < DataLogic.CounrtyList.Count; i++)
+            for (int i = 0; i < DataLogic.CounrtyList.Count; i++)
             {
-                if(CounrtyList[i].id == id)
+                if (CounrtyList[i].id == id)
                 {
                     return CounrtyList[i];
                 }
@@ -105,11 +107,11 @@ namespace HollywoodBets.Business_Logic_Layer
         {
             return new List<Tournament>
             {
-                new Tournament(1," Copa del Rey"),
+                new Tournament(1,"Copa del Rey"),
                 new Tournament(2,"DFB Pokal"),
                 new Tournament(3,"A-League"),
                 new Tournament(4,"Campeonato Potiguar"),
-                new Tournament(5," Veikkausliiga"),
+                new Tournament(5,"Veikkausliiga"),
                 new Tournament(6,"Allsvenskan")
             };
         }
@@ -125,6 +127,60 @@ namespace HollywoodBets.Business_Logic_Layer
             };
         }
 
-        
+        public static List<EventTree> GetEvents()
+        {
+            EventList = new List<EventTree>
+            {
+                new EventTree(1, 1, "ATL BILBAO vs SOCIEDAD", new DateTime(2020, 3, 26, 10, 30,0)),
+                new EventTree(1, 2, "MELBOURNE CITY FC vs ADELAIDE", new DateTime(2020, 3, 26, 10, 40,0)),
+                new EventTree(2, 3,"BLUE BULLS vs SHARKS",  new DateTime(2020, 3, 26, 10, 40,0))
+            };
+            return EventList;
+        }
+        public static List<BetTree> GetBetTypes()
+        {
+            BetList = new List<BetTree>
+            {
+                new BetTree(1,"Full Time"),
+                new BetTree(2,"Double Chance"),
+                new BetTree(3,"Both Teams to Score"),
+                new BetTree(4,"Double Chance and Both Teams Score"),
+                new BetTree(5,"Additional Totals"),
+                new BetTree(6,"First 10 mins"),
+                new BetTree(7,"Totals"),
+                new BetTree(8,"Half Time"),
+                new BetTree(9,"Matchbet & Both Team to Score"),
+                new BetTree(10,"Double Chance and Total"),
+                new BetTree(11,"Half Time/Full Time"),
+                new BetTree(12,"Handicap")
+            };
+            return BetList;
+        }
+
+        public static List<BetTournament> GetBetTournaments()
+        {
+            BetTournamentList =  new List<BetTournament>
+            {
+                new BetTournament(1,new List<int>{1,2,3}),
+                new BetTournament(2,new List<int>{1,2,3,4}),
+                new BetTournament(3,new List<int>{1,2,3,4,5})
+            };
+            return BetTournamentList;
+        }
+
+        public static List<BetTree> GetBetsByTournament(int? tournamentid)
+        {
+            BetTournament bet = GetBetTournaments().Find(x => x.TournamentID == tournamentid);
+            List<BetTree> betTypes = new List<BetTree>();
+            if (bet != null)
+            {
+                for (int i = 0; i < bet.BetTypeID.Count; i++)
+                {
+                    betTypes.Add(GetBetTypes().Find(y => y.BetTypeId == bet.BetTypeID[i]));
+                }
+            }
+            return betTypes;
+        }
     }
+   
 }

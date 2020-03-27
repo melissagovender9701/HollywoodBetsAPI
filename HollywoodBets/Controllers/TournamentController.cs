@@ -15,14 +15,14 @@ namespace HollywoodBets.Controllers
     {
         //https://localhost:44394/api/tournament?sportId=5&countryId=2
         [HttpGet]
-        public IEnumerable<Tournament> Get(int? sportId, int? countryId)
+        public IEnumerable<Tournament> Get(int? id, int? countryId)
         {
-            return GetTournaments(sportId, countryId);
+            return GetTournaments(id, countryId);
 
         }
-        public static IEnumerable<Tournament> GetTournaments(int? sportid, int? countryId)
+        public static IEnumerable<Tournament> GetTournaments(int? id, int? countryId)
         {
-            var SportAndCountryTournaments = DataLogic.GetSportTournaments().Where(x => x.CountryId == countryId && x.SportId == sportid);
+            var SportAndCountryTournaments = DataLogic.GetSportTournaments().Where(x => x.CountryId == countryId && x.SportId == id);
             var countriesTournament = from tournament in DataLogic.GetAllTournament()
                                       where SportAndCountryTournaments.Any(events => events.TournamentId == tournament.TournamentId)
                                       select tournament;
